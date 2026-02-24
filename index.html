@@ -42,6 +42,44 @@
     border-bottom: 1px solid var(--border);
     transition: all .3s ease;
   }
+    .nav-toggle {
+      display: none;
+      background: none;
+      border: none;
+      font-size: 2rem;
+      color: var(--accent);
+      cursor: pointer;
+      margin-left: 1rem;
+      z-index: 101;
+    }
+
+    @media (max-width: 900px) {
+      .nav-links {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: rgba(245,240,232,0.98);
+        flex-direction: column;
+        gap: 0;
+        padding: 1rem 0;
+        border-bottom: 1px solid var(--border);
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.35s cubic-bezier(.4,0,.2,1);
+        display: flex;
+      }
+      .nav-links.open {
+        max-height: 400px;
+        /* Ajusta según la cantidad de enlaces */
+      }
+      .nav-toggle {
+        display: block;
+      }
+      nav {
+        flex-wrap: wrap;
+      }
+    }
 
   .nav-logo {
     font-family: 'Playfair Display', serif;
@@ -617,7 +655,8 @@
 <!-- NAV -->
 <nav>
   <a href="#" class="nav-logo">GAMI<span>FI</span>CACIÓN</a>
-  <ul class="nav-links">
+  <button class="nav-toggle" aria-label="Abrir menú" onclick="toggleNavMenu()">☰</button>
+  <ul class="nav-links" id="navLinks">
     <li><a href="#dias">Contenido</a></li>
     <li><a href="#investigacion">Investigación</a></li>
     <li><a href="#referencias">Referencias</a></li>
@@ -655,26 +694,31 @@
   </div>
   <div class="hero-right">
     <div class="hero-visual"></div>
-    <div class="hero-stats">
-      <div class="hero-stat">
-        <div class="hero-stat-num">89%</div>
-        <div class="hero-stat-label">Mayor motivación</div>
-      </div>
-      <div class="hero-stat">
-        <div class="hero-stat-num">5</div>
-        <div class="hero-stat-label">Días de blog</div>
-      </div>
-      <div class="hero-stat">
-        <div class="hero-stat-num">+40%</div>
-        <div class="hero-stat-label">Retención de contenido</div>
-      </div>
-    </div>
+  </div>
   </div>
   <a href="#dias" class="scroll-indicator">
     <div class="scroll-arrow"></div>
     Explorar
   </a>
 </section>
+<script>
+function toggleNavMenu() {
+  const navLinks = document.getElementById('navLinks');
+  navLinks.classList.toggle('open');
+}
+
+window.addEventListener('DOMContentLoaded', function() {
+  const navLinks = document.getElementById('navLinks');
+  navLinks.classList.remove('open');
+
+  // Cierra el menú al hacer clic en cualquier enlace
+  navLinks.querySelectorAll('a').forEach(function(link) {
+    link.addEventListener('click', function() {
+      navLinks.classList.remove('open');
+    });
+  });
+});
+</script>
 
 <!-- INTRO -->
 <section class="section" id="introduccion">
