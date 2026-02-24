@@ -1,0 +1,1606 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gamificación & Educación — Blog Académico | Iberoamericana</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --ink: #0d0d0d;
+    --paper: #f5f0e8;
+    --cream: #faf7f2;
+    --accent: #c8602a;
+    --accent2: #2a6ec8;
+    --gold: #b8943f;
+    --muted: #7a7570;
+    --border: #e0d8cc;
+    --dark-bg: #111010;
+    --dark-surface: #1c1b19;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; font-size: 16px; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--ink);
+    overflow-x: hidden;
+  }
+
+  /* ─── HEADER / NAV ─── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1rem 2.5rem;
+    background: rgba(245,240,232,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    transition: all .3s ease;
+  }
+
+  .nav-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem; font-weight: 700;
+    letter-spacing: 0.01em;
+    color: var(--ink);
+    text-decoration: none;
+  }
+
+  .nav-logo span { color: var(--accent); }
+
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a {
+    font-size: 0.82rem; font-weight: 500;
+    text-decoration: none; color: var(--muted);
+    letter-spacing: 0.06em; text-transform: uppercase;
+    transition: color .2s;
+  }
+  .nav-links a:hover { color: var(--accent); }
+
+  .nav-badge {
+    background: var(--accent); color: white;
+    font-size: 0.7rem; font-weight: 600;
+    padding: .3rem .8rem; border-radius: 2rem;
+    letter-spacing: 0.05em; text-transform: uppercase;
+  }
+
+  /* ─── HERO ─── */
+  .hero {
+    min-height: 100vh;
+    background: var(--dark-bg);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .hero-left {
+    display: flex; flex-direction: column; justify-content: center;
+    padding: 8rem 3.5rem 5rem 4rem;
+    position: relative; z-index: 2;
+  }
+
+  .hero-tag {
+    display: inline-flex; align-items: center; gap: .5rem;
+    font-size: 0.72rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 2rem;
+  }
+
+  .hero-tag::before {
+    content: '';
+    display: block; width: 28px; height: 2px;
+    background: var(--accent);
+  }
+
+  .hero-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(3rem, 5vw, 5.5rem);
+    line-height: 1.0;
+    font-weight: 900;
+    color: #f5f0e8;
+    margin-bottom: 1.5rem;
+    letter-spacing: -0.02em;
+  }
+
+  .hero-title em {
+    font-style: italic;
+    color: var(--accent);
+  }
+
+  .hero-sub {
+    font-size: 1.05rem; line-height: 1.7;
+    color: #9a9590; max-width: 460px;
+    margin-bottom: 2.5rem;
+  }
+
+  .hero-meta {
+    display: flex; gap: 2rem; align-items: center;
+  }
+
+  .hero-meta-item {
+    display: flex; flex-direction: column;
+    gap: .15rem;
+  }
+
+  .hero-meta-label {
+    font-size: 0.68rem; letter-spacing: .1em; text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .hero-meta-value {
+    font-size: 0.85rem; font-weight: 600; color: #f5f0e8;
+  }
+
+  .hero-right {
+    position: relative; overflow: hidden;
+  }
+
+  .hero-visual {
+    position: absolute; inset: 0;
+    background: linear-gradient(135deg, #1c2a42 0%, #2a1c12 50%, #0d1a0d 100%);
+  }
+
+  .hero-visual::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='rgba(200,96,42,0.08)' stroke-width='1'%3E%3Cpath d='M0 40h80M40 0v80M20 0v80M60 0v80M0 20h80M0 60h80'/%3E%3C/g%3E%3C/svg%3E");
+  }
+
+  .hero-stats {
+    position: absolute; bottom: 4rem; left: 3rem; right: 3rem;
+    display: grid; grid-template-columns: repeat(3,1fr); gap: 1px;
+    background: rgba(255,255,255,0.08);
+    border-radius: 12px; overflow: hidden;
+  }
+
+  .hero-stat {
+    background: rgba(0,0,0,0.4);
+    padding: 1.5rem;
+    text-align: center;
+  }
+
+  .hero-stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.4rem; font-weight: 900;
+    color: var(--accent);
+    line-height: 1;
+    margin-bottom: .3rem;
+  }
+
+  .hero-stat-label {
+    font-size: 0.7rem; letter-spacing: .08em; text-transform: uppercase;
+    color: rgba(245,240,232,.55);
+  }
+
+  .scroll-indicator {
+    position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%);
+    display: flex; flex-direction: column; align-items: center; gap: .5rem;
+    color: var(--muted); font-size: 0.72rem; letter-spacing: .08em; text-transform: uppercase;
+    animation: bounce 2s infinite;
+    text-decoration: none;
+  }
+
+  .scroll-arrow {
+    width: 1px; height: 40px;
+    background: linear-gradient(to bottom, transparent, var(--muted));
+  }
+
+  @keyframes bounce {
+    0%,100% { transform: translateX(-50%) translateY(0); }
+    50% { transform: translateX(-50%) translateY(6px); }
+  }
+
+  /* ─── INTRO SECTION ─── */
+  .section { padding: 6rem 0; }
+  .section-inner { max-width: 1200px; margin: 0 auto; padding: 0 2.5rem; }
+
+  .section-label {
+    display: inline-flex; align-items: center; gap: .5rem;
+    font-size: 0.72rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase;
+    color: var(--accent); margin-bottom: 1.2rem;
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 3.5vw, 3.2rem);
+    font-weight: 700; line-height: 1.15;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+    margin-bottom: 1.5rem;
+  }
+
+  .lead-text {
+    font-size: 1.15rem; line-height: 1.8;
+    color: #4a4540; max-width: 680px;
+  }
+
+  /* ─── DAY TABS ─── */
+  .days-nav {
+    background: var(--dark-surface);
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    position: sticky; top: 60px; z-index: 50;
+  }
+
+  .days-nav-inner {
+    max-width: 1200px; margin: 0 auto; padding: 0 2.5rem;
+    display: flex; gap: 0; overflow-x: auto;
+    scrollbar-width: none;
+  }
+
+  .days-nav-inner::-webkit-scrollbar { display: none; }
+
+  .day-tab {
+    flex-shrink: 0;
+    padding: 1.1rem 1.8rem;
+    font-size: 0.78rem; font-weight: 600; letter-spacing: .06em; text-transform: uppercase;
+    color: rgba(245,240,232,.4);
+    cursor: pointer; border: none; background: none;
+    border-bottom: 2px solid transparent;
+    transition: all .2s ease;
+    position: relative;
+  }
+
+  .day-tab:hover { color: rgba(245,240,232,.8); }
+  .day-tab.active {
+    color: var(--accent);
+    border-bottom-color: var(--accent);
+  }
+
+  /* ─── DAY ARTICLES ─── */
+  .article-section {
+    display: none;
+    animation: fadeUp .4s ease forwards;
+  }
+
+  .article-section.active { display: block; }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .article-hero {
+    background: var(--dark-bg);
+    padding: 5rem 2.5rem;
+    position: relative; overflow: hidden;
+  }
+
+  .article-hero::after {
+    content: '';
+    position: absolute; top: 0; right: 0;
+    width: 40%; height: 100%;
+    background: linear-gradient(to left, rgba(200,96,42,0.08), transparent);
+    pointer-events: none;
+  }
+
+  .article-hero-inner {
+    max-width: 1200px; margin: 0 auto;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 4rem;
+    align-items: center;
+  }
+
+  .article-day-num {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.75rem; color: var(--accent);
+    letter-spacing: .1em; margin-bottom: 1rem;
+  }
+
+  .article-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.8rem, 3vw, 3rem);
+    font-weight: 900; line-height: 1.1;
+    color: #f5f0e8; letter-spacing: -0.02em;
+  }
+
+  .article-title em { font-style: italic; color: var(--accent); }
+
+  .article-intro {
+    font-size: 1rem; line-height: 1.75;
+    color: rgba(245,240,232,.65);
+    margin-top: 1.2rem;
+  }
+
+  .article-icon-block {
+    display: flex; flex-direction: column; align-items: flex-end; gap: 1.5rem;
+  }
+
+  .big-icon {
+    font-size: 7rem;
+    line-height: 1;
+    opacity: 0.7;
+  }
+
+  /* ─── ARTICLE CONTENT ─── */
+  .article-content {
+    max-width: 1200px; margin: 0 auto; padding: 4rem 2.5rem;
+  }
+
+  .content-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 3rem;
+    margin-bottom: 3rem;
+  }
+
+  .content-grid.three-col {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .content-card {
+    background: white;
+    border-radius: 16px; padding: 2rem;
+    border: 1px solid var(--border);
+    transition: transform .25s ease, box-shadow .25s ease;
+  }
+
+  .content-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 16px 40px rgba(0,0,0,0.1);
+  }
+
+  .card-icon {
+    font-size: 2rem; margin-bottom: 1rem;
+  }
+
+  .card-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.25rem; font-weight: 700;
+    margin-bottom: .8rem; color: var(--ink);
+    line-height: 1.3;
+  }
+
+  .card-text {
+    font-size: 0.92rem; line-height: 1.75;
+    color: #5a5550;
+  }
+
+  .card-tag {
+    display: inline-block; margin-top: 1rem;
+    font-size: 0.68rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase;
+    color: var(--accent); background: rgba(200,96,42,.1);
+    padding: .25rem .7rem; border-radius: 20px;
+  }
+
+  .highlight-box {
+    background: var(--dark-bg);
+    border-radius: 20px; padding: 3rem;
+    margin: 3rem 0;
+    position: relative; overflow: hidden;
+  }
+
+  .highlight-box::before {
+    content: '"';
+    position: absolute; top: -1rem; left: 2rem;
+    font-family: 'Playfair Display', serif;
+    font-size: 12rem; font-weight: 900;
+    color: rgba(200,96,42,.12);
+    line-height: 1;
+    pointer-events: none;
+  }
+
+  .highlight-text {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.6rem; font-style: italic;
+    line-height: 1.5;
+    color: #f5f0e8;
+    max-width: 700px;
+    position: relative; z-index: 1;
+  }
+
+  .highlight-author {
+    font-size: 0.8rem; color: var(--muted);
+    margin-top: 1rem; letter-spacing: .05em;
+  }
+
+  .research-strip {
+    background: linear-gradient(135deg, var(--accent), #a04820);
+    border-radius: 16px; padding: 2.5rem 3rem;
+    margin: 2.5rem 0;
+    display: grid; grid-template-columns: 1fr auto;
+    align-items: center; gap: 2rem;
+  }
+
+  .research-strip-text {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem; color: white; line-height: 1.4;
+  }
+
+  .research-strip-stat {
+    text-align: center;
+  }
+
+  .research-stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 3rem; font-weight: 900;
+    color: white; line-height: 1;
+  }
+
+  .research-stat-label {
+    font-size: 0.75rem; color: rgba(255,255,255,.7);
+    text-transform: uppercase; letter-spacing: .08em;
+  }
+
+  /* ─── THEORY SECTION ─── */
+  .theory-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin: 2.5rem 0;
+  }
+
+  .theory-card {
+    border-radius: 16px;
+    padding: 2rem;
+    background: white;
+    border: 1px solid var(--border);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .theory-card::after {
+    content: '';
+    position: absolute; bottom: 0; left: 0; right: 0;
+    height: 4px;
+  }
+
+  .theory-card.orange::after { background: var(--accent); }
+  .theory-card.blue::after { background: var(--accent2); }
+  .theory-card.gold::after { background: var(--gold); }
+  .theory-card.green::after { background: #3a8c5c; }
+
+  .theory-num {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.72rem; color: var(--muted);
+    letter-spacing: .1em; margin-bottom: .8rem;
+  }
+
+  .theory-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem; font-weight: 700;
+    color: var(--ink); margin-bottom: .7rem;
+  }
+
+  .theory-body { font-size: 0.88rem; line-height: 1.7; color: #5a5550; }
+
+  /* ─── TIMELINE ─── */
+  .timeline { margin: 3rem 0; position: relative; }
+  .timeline::before {
+    content: '';
+    position: absolute; left: 1.5rem; top: 0; bottom: 0;
+    width: 2px; background: var(--border);
+  }
+
+  .timeline-item {
+    display: flex; gap: 2rem;
+    margin-bottom: 2.5rem;
+    padding-left: .5rem;
+    position: relative;
+  }
+
+  .timeline-dot {
+    flex-shrink: 0;
+    width: 2rem; height: 2rem;
+    background: var(--accent);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    color: white; font-size: 0.75rem; font-weight: 700;
+    z-index: 1;
+    margin-top: .15rem;
+  }
+
+  .timeline-body { flex: 1; }
+  .timeline-year {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.72rem; color: var(--accent);
+    letter-spacing: .1em; margin-bottom: .3rem;
+  }
+
+  .timeline-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem; font-weight: 700; color: var(--ink);
+    margin-bottom: .5rem;
+  }
+
+  .timeline-text { font-size: 0.9rem; line-height: 1.7; color: #5a5550; }
+
+  /* ─── REFERENCES ─── */
+  .references-section {
+    background: var(--dark-bg);
+    padding: 5rem 2.5rem;
+  }
+
+  .references-inner {
+    max-width: 1200px; margin: 0 auto;
+  }
+
+  .references-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem; font-weight: 700;
+    color: #f5f0e8; margin-bottom: 2.5rem;
+  }
+
+  .ref-list {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;
+  }
+
+  .ref-item {
+    background: rgba(255,255,255,.04);
+    border: 1px solid rgba(255,255,255,.08);
+    border-radius: 12px; padding: 1.2rem 1.5rem;
+    font-size: 0.85rem; line-height: 1.65;
+    color: rgba(245,240,232,.6);
+    transition: background .2s;
+  }
+
+  .ref-item:hover { background: rgba(255,255,255,.07); }
+  .ref-item strong { color: rgba(245,240,232,.85); }
+
+  /* ─── AUTHORS ─── */
+  .authors-section { padding: 4rem 2.5rem; background: var(--paper); }
+  .authors-inner { max-width: 1200px; margin: 0 auto; }
+
+  .authors-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem;
+    margin-top: 2rem;
+  }
+
+  .author-card {
+    background: white; border-radius: 16px; padding: 2rem;
+    border: 1px solid var(--border); text-align: center;
+  }
+
+  .author-avatar {
+    width: 64px; height: 64px; border-radius: 50%;
+    background: linear-gradient(135deg, var(--accent), var(--accent2));
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem; color: white; font-weight: 700;
+    margin: 0 auto 1rem;
+  }
+
+  .author-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem; font-weight: 700; color: var(--ink); margin-bottom: .2rem;
+  }
+
+  .author-id {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.72rem; color: var(--muted); letter-spacing: .08em;
+  }
+
+  /* ─── FOOTER ─── */
+  footer {
+    background: #0a0908; color: rgba(245,240,232,.4);
+    padding: 2.5rem; text-align: center;
+    font-size: 0.82rem; letter-spacing: .03em;
+  }
+
+  footer strong { color: rgba(245,240,232,.7); }
+
+  /* ─── FULL-WIDTH DIVIDERS ─── */
+  .divider {
+    height: 1px; background: var(--border);
+    margin: 0;
+  }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 900px) {
+    .hero { grid-template-columns: 1fr; }
+    .hero-right { display: none; }
+    .content-grid { grid-template-columns: 1fr; }
+    .content-grid.three-col { grid-template-columns: 1fr; }
+    .article-hero-inner { grid-template-columns: 1fr; }
+    .article-icon-block { display: none; }
+    .ref-list { grid-template-columns: 1fr; }
+    .authors-grid { grid-template-columns: 1fr; }
+    nav { padding: 1rem 1.5rem; }
+    .nav-badge { display: none; }
+  }
+
+  /* ─── SCROLL FADE ANIMATIONS ─── */
+  .fade-in {
+    opacity: 0; transform: translateY(24px);
+    transition: opacity .6s ease, transform .6s ease;
+  }
+
+  .fade-in.visible {
+    opacity: 1; transform: translateY(0);
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">GAMI<span>FI</span>CACIÓN</a>
+  <ul class="nav-links">
+    <li><a href="#dias">Contenido</a></li>
+    <li><a href="#investigacion">Investigación</a></li>
+    <li><a href="#referencias">Referencias</a></li>
+    <li><a href="#autores">Autores</a></li>
+  </ul>
+  <span class="nav-badge">Maestría en Educación</span>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-left">
+    <div class="hero-tag">Actividad II · Electiva II · 2026</div>
+    <h1 class="hero-title">
+      Gamificación<br>
+      &amp; <em>Educación</em>
+    </h1>
+    <p class="hero-sub">
+      Una exploración pedagógica sobre cómo los elementos del juego transforman
+      los escenarios de aprendizaje, potencian competencias y rediseñan la práctica docente.
+    </p>
+    <div class="hero-meta">
+      <div class="hero-meta-item">
+        <span class="hero-meta-label">Institución</span>
+        <span class="hero-meta-value">Iberoamericana</span>
+      </div>
+      <div class="hero-meta-item">
+        <span class="hero-meta-label">Programa</span>
+        <span class="hero-meta-value">Maestría en Educación</span>
+      </div>
+      <div class="hero-meta-item">
+        <span class="hero-meta-label">Docente</span>
+        <span class="hero-meta-value">Luz Alzate</span>
+      </div>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-visual"></div>
+    <div class="hero-stats">
+      <div class="hero-stat">
+        <div class="hero-stat-num">89%</div>
+        <div class="hero-stat-label">Mayor motivación</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-num">5</div>
+        <div class="hero-stat-label">Días de blog</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-num">+40%</div>
+        <div class="hero-stat-label">Retención de contenido</div>
+      </div>
+    </div>
+  </div>
+  <a href="#dias" class="scroll-indicator">
+    <div class="scroll-arrow"></div>
+    Explorar
+  </a>
+</section>
+
+<!-- INTRO -->
+<section class="section" id="introduccion">
+  <div class="section-inner fade-in">
+    <div class="section-label">Fundamento del proyecto</div>
+    <h2 class="section-title">¿Por qué la gamificación<br>importa hoy?</h2>
+    <p class="lead-text">
+      La educación del siglo XXI enfrenta estudiantes hiperconectados, cuya atención compite con estímulos
+      digitales constantes. La gamificación emerge no como una moda, sino como una respuesta pedagógica
+      fundamentada, que articula teorías del aprendizaje con el poder motivacional del juego para generar
+      experiencias formativas más profundas, participativas y significativas.
+    </p>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- DAY TABS -->
+<div class="days-nav" id="dias">
+  <div class="days-nav-inner">
+    <button class="day-tab active" onclick="showDay('lunes')">Lunes · Concepto</button>
+    <button class="day-tab" onclick="showDay('martes')">Martes · Tipos</button>
+    <button class="day-tab" onclick="showDay('miercoles')">Miércoles · Competencias</button>
+    <button class="day-tab" onclick="showDay('jueves')">Jueves · Relación Pedagógica</button>
+    <button class="day-tab" onclick="showDay('viernes')">Viernes · Reflexión Crítica</button>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════
+     DÍA 1: LUNES
+════════════════════════════════════════ -->
+<div class="article-section active" id="day-lunes">
+  <div class="article-hero">
+    <div class="article-hero-inner">
+      <div>
+        <div class="article-day-num">DÍA 01 · LUNES</div>
+        <h2 class="article-title">¿Qué es la<br><em>Gamificación?</em><br>Concepto y fundamentos</h2>
+        <p class="article-intro">
+          La gamificación es la aplicación de mecánicas y dinámicas propias del juego en contextos
+          no lúdicos para potenciar motivación, compromiso y aprendizaje significativo.
+        </p>
+      </div>
+      <div class="article-icon-block">
+        <div class="big-icon">🎮</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="article-content">
+    <!-- Definición y contexto -->
+    <div class="content-grid">
+      <div class="content-card fade-in">
+        <div class="card-icon">📖</div>
+        <h3 class="card-title">Definición Académica</h3>
+        <p class="card-text">
+          Deterding et al. (2011) definen la gamificación como el uso de elementos del diseño de juegos
+          en contextos que no son juegos. Esta definición centra el concepto en los <em>elementos</em>
+          —mecánicas, dinámicas y estéticas— más que en el juego completo, lo que permite una aplicación
+          modular y adaptable a entornos educativos formales.
+        </p>
+        <span class="card-tag">Deterding et al., 2011</span>
+      </div>
+      <div class="content-card fade-in">
+        <div class="card-icon">🧠</div>
+        <h3 class="card-title">Fundamento Psicológico</h3>
+        <p class="card-text">
+          La Teoría de la Autodeterminación (Deci & Ryan, 1985) explica por qué funciona la gamificación:
+          los juegos satisfacen tres necesidades psicológicas básicas: <strong>autonomía</strong>
+          (el jugador elige), <strong>competencia</strong> (supera retos) y <strong>relación</strong>
+          (interacción social). Cuando la educación satisface estas necesidades, la motivación intrínseca florece.
+        </p>
+        <span class="card-tag">Deci & Ryan, 1985</span>
+      </div>
+    </div>
+
+    <div class="highlight-box">
+      <p class="highlight-text">
+        "La gamificación no se trata de hacer los juegos más educativos,
+        sino de hacer la educación más envolvente."
+      </p>
+      <p class="highlight-author">— Karl Kapp, The Gamification of Learning and Instruction, 2012</p>
+    </div>
+
+    <div class="content-grid three-col">
+      <div class="content-card fade-in">
+        <div class="card-icon">⚙️</div>
+        <h3 class="card-title">Mecánicas</h3>
+        <p class="card-text">
+          Son las reglas y estructuras básicas: puntos, insignias, tablas de clasificación (PBL),
+          niveles y misiones. Funcionan como sistema de retroalimentación inmediata que informa
+          al estudiante sobre su progreso.
+        </p>
+      </div>
+      <div class="content-card fade-in">
+        <div class="card-icon">⚡</div>
+        <h3 class="card-title">Dinámicas</h3>
+        <p class="card-text">
+          Son los comportamientos que emergen en respuesta a las mecánicas: competencia, cooperación,
+          logro y expresión. Las dinámicas moldean la experiencia colectiva del aula y generan
+          identidad de grupo.
+        </p>
+      </div>
+      <div class="content-card fade-in">
+        <div class="card-icon">✨</div>
+        <h3 class="card-title">Estéticas</h3>
+        <p class="card-text">
+          Son las respuestas emocionales deseadas: diversión, desafío, narrativa inmersiva y
+          descubrimiento. Las estéticas bien diseñadas transforman una tarea ordinaria en una
+          experiencia memorable.
+        </p>
+      </div>
+    </div>
+
+    <div class="research-strip fade-in">
+      <div class="research-strip-text">
+        Según Hamari, Koivisto & Sarsa (2014), el <strong>77%</strong> de los estudios revisados
+        reportaron efectos positivos de la gamificación en el aprendizaje y la motivación.
+      </div>
+      <div class="research-strip-stat">
+        <div class="research-stat-num">77%</div>
+        <div class="research-stat-label">Estudios con resultados positivos</div>
+      </div>
+    </div>
+
+    <!-- Conectivismo -->
+    <div class="content-grid fade-in">
+      <div class="content-card">
+        <div class="card-icon">🌐</div>
+        <h3 class="card-title">Conectivismo y Gamificación</h3>
+        <p class="card-text">
+          Sobrino Morrás (2014) plantea el conectivismo como el modelo pedagógico de la era digital,
+          donde el conocimiento no reside en el individuo sino en la red de conexiones. La gamificación
+          potencia este modelo al crear ecosistemas de aprendizaje colaborativo mediados por tecnología,
+          donde cada estudiante aporta a la red colectiva.
+        </p>
+        <span class="card-tag">Sobrino Morrás, 2014</span>
+      </div>
+      <div class="content-card">
+        <div class="card-icon">💡</div>
+        <h3 class="card-title">TIC como Mediación Pedagógica</h3>
+        <p class="card-text">
+          Muñoz Rojas (2016) describe cómo las TIC redefinen la práctica docente creando nuevos
+          escenarios pedagógicos. La gamificación digital capitaliza estas mediaciones tecnológicas,
+          transformando herramientas como Kahoot!, Classcraft o Duolingo en entornos formativos
+          interactivos con lógica de progresión.
+        </p>
+        <span class="card-tag">Muñoz Rojas, 2016</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════
+     DÍA 2: MARTES
+════════════════════════════════════════ -->
+<div class="article-section" id="day-martes">
+  <div class="article-hero">
+    <div class="article-hero-inner">
+      <div>
+        <div class="article-day-num">DÍA 02 · MARTES</div>
+        <h2 class="article-title">Tipos de<br><em>Gamificación</em><br>en la Educación</h2>
+        <p class="article-intro">
+          No toda gamificación es igual. Su clasificación responde al nivel de integración
+          con el currículo, el soporte tecnológico y los objetivos pedagógicos perseguidos.
+        </p>
+      </div>
+      <div class="article-icon-block">
+        <div class="big-icon">🏆</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="article-content">
+    <div class="theory-grid fade-in">
+      <div class="theory-card orange">
+        <div class="theory-num">TIPO 01</div>
+        <h3 class="theory-title">Gamificación Estructural</h3>
+        <p class="theory-body">
+          Superpone elementos de juego (puntos, insignias, rankings) sobre contenidos
+          curriculares existentes sin modificarlos. Su objetivo es aumentar la motivación
+          extrínseca sin rediseñar el currículo. Es el tipo más fácil de implementar
+          pero el de menor impacto transformador a largo plazo si se usa en aislamiento.
+        </p>
+      </div>
+      <div class="theory-card blue">
+        <div class="theory-num">TIPO 02</div>
+        <h3 class="theory-title">Gamificación de Contenido</h3>
+        <p class="theory-body">
+          Integra narrativas, misiones y retos directamente en el diseño curricular.
+          El aprendizaje ocurre dentro de la ficción del juego. Lee & Hammer (2011)
+          argumentan que este tipo produce cambios cognitivos, emocionales y sociales
+          más profundos, pues el estudiante construye conocimiento mientras vive
+          una experiencia narrativa coherente.
+        </p>
+      </div>
+      <div class="theory-card gold">
+        <div class="theory-num">TIPO 03</div>
+        <h3 class="theory-title">Gamificación Digital</h3>
+        <p class="theory-body">
+          Plataformas como Classcraft, Kahoot!, Duolingo, Minecraft Education Edition
+          y Gimkit crean entornos virtuales de aprendizaje gamificado. Muñoz Rojas (2016)
+          enfatiza que estas mediaciones tecnológicas redefinen el rol docente, que pasa
+          de transmisor a diseñador de experiencias y facilitador del juego.
+        </p>
+      </div>
+      <div class="theory-card green">
+        <div class="theory-num">TIPO 04</div>
+        <h3 class="theory-title">Juegos Serios (Serious Games)</h3>
+        <p class="theory-body">
+          Videojuegos diseñados explícitamente con fines educativos o formativos.
+          Investigaciones de Mayer (2019) demuestran que los juegos serios bien
+          diseñados pueden producir aprendizajes equivalentes a la instrucción
+          tradicional en tiempo equivalente, con ventajas significativas en
+          retención y aplicación del conocimiento.
+        </p>
+      </div>
+    </div>
+
+    <div class="highlight-box fade-in">
+      <p class="highlight-text">
+        "La gincana de programación aumentó la participación activa en un 68%
+        respecto al semestre anterior con metodologías convencionales."
+      </p>
+      <p class="highlight-author">— Marrón, A.M. (2018). Gamificación en el aula: Gincana de programación.</p>
+    </div>
+
+    <h3 style="font-family:'Playfair Display',serif;font-size:1.8rem;font-weight:700;margin-bottom:2rem;color:var(--ink);">
+      Herramientas Digitales por Tipo
+    </h3>
+
+    <div class="content-grid three-col fade-in">
+      <div class="content-card">
+        <div class="card-icon">📊</div>
+        <h3 class="card-title">Kahoot! & Quizlet Live</h3>
+        <p class="card-text">
+          Gamificación estructural basada en cuestionarios competitivos en tiempo real.
+          Estudios de Wang & Lieberoth (2016) reportaron aumento del 22% en concentración
+          y del 25% en motivación entre estudiantes universitarios que las usaron regularmente.
+        </p>
+        <span class="card-tag">Estructural · Digital</span>
+      </div>
+      <div class="content-card">
+        <div class="card-icon">⚔️</div>
+        <h3 class="card-title">Classcraft</h3>
+        <p class="card-text">
+          Convierte el aula en un juego de rol (RPG) de largo plazo. Los estudiantes
+          crean personajes, forman equipos y ganan experiencia por comportamientos
+          positivos. Es un ejemplo de gamificación de contenido con fuerte componente
+          social y colaborativo.
+        </p>
+        <span class="card-tag">Contenido · Social</span>
+      </div>
+      <div class="content-card">
+        <div class="card-icon">🦉</div>
+        <h3 class="card-title">Duolingo</h3>
+        <p class="card-text">
+          Referente mundial de gamificación para aprendizaje de idiomas. Usa rachas
+          diarias, ligas competitivas y recompensas para mantener consistencia.
+          Vesselinov & Grego (2012) reportaron que 34 horas en Duolingo equivalen
+          a un semestre universitario de español.
+        </p>
+        <span class="card-tag">Digital · Autónomo</span>
+      </div>
+    </div>
+
+    <div class="research-strip fade-in">
+      <div class="research-strip-text">
+        El mercado global de gamificación educativa alcanzará los <strong>$38.1 mil millones</strong>
+        en 2026, según MarketsandMarkets (2021), evidenciando su adopción masiva.
+      </div>
+      <div class="research-strip-stat">
+        <div class="research-stat-num">$38B</div>
+        <div class="research-stat-label">Mercado global 2026</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════
+     DÍA 3: MIÉRCOLES
+════════════════════════════════════════ -->
+<div class="article-section" id="day-miercoles">
+  <div class="article-hero">
+    <div class="article-hero-inner">
+      <div>
+        <div class="article-day-num">DÍA 03 · MIÉRCOLES</div>
+        <h2 class="article-title">Gamificación<br>&amp; <em>Competencias</em><br>del Siglo XXI</h2>
+        <p class="article-intro">
+          Más allá de la motivación, la gamificación es un vehículo para el desarrollo de
+          competencias cognitivas, sociales, comunicativas y del pensamiento crítico.
+        </p>
+      </div>
+      <div class="article-icon-block">
+        <div class="big-icon">🧩</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="article-content">
+    <div class="content-grid fade-in">
+      <div class="content-card">
+        <div class="card-icon">🔍</div>
+        <h3 class="card-title">Pensamiento Crítico y ABP</h3>
+        <p class="card-text">
+          Boude Figueredo & Ruiz (2009) demostraron que el Aprendizaje Basado en Problemas
+          fortalece competencias mediante situaciones reales. Cuando la gamificación presenta
+          problemas como misiones o retos narrativos, el estudiante debe analizar, evaluar y
+          crear soluciones —habilidades propias del nivel superior de la Taxonomía de Bloom
+          revisada (Anderson & Krathwohl, 2001).
+        </p>
+        <span class="card-tag">ABP · Bloom · Pensamiento Crítico</span>
+      </div>
+      <div class="content-card">
+        <div class="card-icon">🌍</div>
+        <h3 class="card-title">Competencias Interculturales</h3>
+        <p class="card-text">
+          Batlle (2016) evidenció que la gamificación en el aula de ELE (Español como Lengua
+          Extranjera) favorece la comunicación intercultural al crear espacios lúdicos donde
+          las diferencias culturales se convierten en recursos del juego. El estudiante
+          desarrolla empatía, escucha activa y adaptación comunicativa en contextos auténticos.
+        </p>
+        <span class="card-tag">ELE · Interculturalidad · Batlle 2016</span>
+      </div>
+    </div>
+
+    <div class="highlight-box fade-in">
+      <p class="highlight-text">
+        "Cuando el aprendizaje se convierte en juego, el error deja de ser fracaso
+        y se convierte en oportunidad de reintentar: el corazón del aprendizaje profundo."
+      </p>
+      <p class="highlight-author">— Elaboración propia basada en Kapp (2012) y Dweck (2006)</p>
+    </div>
+
+    <h3 style="font-family:'Playfair Display',serif;font-size:1.8rem;font-weight:700;margin:2rem 0 1.5rem;color:var(--ink);">
+      Las 4 C del Aprendizaje del Siglo XXI y su relación con la Gamificación
+    </h3>
+
+    <div class="theory-grid fade-in">
+      <div class="theory-card orange">
+        <div class="theory-num">C·01</div>
+        <h3 class="theory-title">Colaboración</h3>
+        <p class="theory-body">
+          Los juegos en equipo exigen distribución de roles, negociación y toma
+          de decisiones colectiva. Plataformas como Classcraft estructuran
+          equipos donde el éxito individual depende del éxito grupal,
+          generando interdependencia positiva (Johnson & Johnson, 1989).
+        </p>
+      </div>
+      <div class="theory-card blue">
+        <div class="theory-num">C·02</div>
+        <h3 class="theory-title">Comunicación</h3>
+        <p class="theory-body">
+          Misiones colaborativas requieren que los estudiantes articulen ideas,
+          argumenten posiciones y presenten resultados. La comunicación emerge
+          como necesidad real dentro de la narrativa del juego, no como ejercicio
+          abstracto.
+        </p>
+      </div>
+      <div class="theory-card gold">
+        <div class="theory-num">C·03</div>
+        <h3 class="theory-title">Creatividad</h3>
+        <p class="theory-body">
+          El diseño de estrategias dentro del juego, la creación de narrativas
+          propias y la resolución de problemas abiertos estimulan el pensamiento
+          divergente y la innovación. Juegos como Minecraft Education Edition
+          ejemplifican este enfoque.
+        </p>
+      </div>
+      <div class="theory-card green">
+        <div class="theory-num">C·04</div>
+        <h3 class="theory-title">Pensamiento Crítico</h3>
+        <p class="theory-body">
+          Los retos gamificados bien diseñados no tienen respuesta única.
+          Requieren análisis de evidencia, evaluación de alternativas y
+          justificación de decisiones, desarrollando el pensamiento
+          de orden superior de Bloom.
+        </p>
+      </div>
+    </div>
+
+    <div class="research-strip fade-in">
+      <div class="research-strip-text">
+        Plass, Homer & Kinzer (2015) concluyeron que los juegos educativos
+        desarrollan mejor las <strong>competencias cognitivas complejas</strong> que los métodos
+        instruccionales directos, especialmente en resolución de problemas ill-defined.
+      </div>
+      <div class="research-strip-stat">
+        <div class="research-stat-num">+31%</div>
+        <div class="research-stat-label">Mejora en resolución de problemas</div>
+      </div>
+    </div>
+
+    <!-- Bloom & Gamificación -->
+    <h3 style="font-family:'Playfair Display',serif;font-size:1.8rem;font-weight:700;margin:2.5rem 0 1.5rem;color:var(--ink);">
+      Taxonomía de Bloom Revisada y Gamificación
+    </h3>
+
+    <div class="timeline fade-in">
+      <div class="timeline-item">
+        <div class="timeline-dot">1</div>
+        <div class="timeline-body">
+          <div class="timeline-year">NIVEL BÁSICO</div>
+          <div class="timeline-title">Recordar y Comprender</div>
+          <p class="timeline-text">Cuestionarios gamificados (Kahoot!, Quizlet) refuerzan la memoria
+          y la comprensión básica mediante repetición espaciada y retroalimentación inmediata.</p>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot">2</div>
+        <div class="timeline-body">
+          <div class="timeline-year">NIVEL MEDIO</div>
+          <div class="timeline-title">Aplicar y Analizar</div>
+          <p class="timeline-text">Simulaciones y juegos de rol llevan al estudiante a aplicar conceptos
+          en contextos simulados y analizar variables del sistema, transfiriendo el aprendizaje.</p>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot">3</div>
+        <div class="timeline-body">
+          <div class="timeline-year">NIVEL SUPERIOR</div>
+          <div class="timeline-title">Evaluar y Crear</div>
+          <p class="timeline-text">El diseño de juegos por parte de los estudiantes, o la resolución de
+          problemas complejos narrativos, activan los niveles más altos de pensamiento crítico y creatividad.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════
+     DÍA 4: JUEVES
+════════════════════════════════════════ -->
+<div class="article-section" id="day-jueves">
+  <div class="article-hero">
+    <div class="article-hero-inner">
+      <div>
+        <div class="article-day-num">DÍA 04 · JUEVES</div>
+        <h2 class="article-title">Relación<br><em>Conceptual</em><br>Gamificación-Educación</h2>
+        <p class="article-intro">
+          La gamificación y la educación se articulan a través de tres ejes fundamentales:
+          motivación, participación activa y mediación tecnológica, configurando un nuevo paradigma pedagógico.
+        </p>
+      </div>
+      <div class="article-icon-block">
+        <div class="big-icon">🔗</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="article-content">
+    <div class="content-grid three-col fade-in">
+      <div class="content-card">
+        <div class="card-icon">🔥</div>
+        <h3 class="card-title">Motivación Intrínseca y Extrínseca</h3>
+        <p class="card-text">
+          Ryan & Deci (2000) distinguen entre motivación extrínseca (recompensas externas)
+          e intrínseca (satisfacción interna). La gamificación bien diseñada transita de la
+          primera a la segunda: los puntos enganchan inicialmente, pero es el reto cognitivo
+          y la narrativa lo que sostiene el aprendizaje a largo plazo.
+        </p>
+        <span class="card-tag">Autodeterminación · Ryan & Deci</span>
+      </div>
+      <div class="content-card">
+        <div class="card-icon">👥</div>
+        <h3 class="card-title">Participación Activa</h3>
+        <p class="card-text">
+          Coherente con el enfoque constructivista de Vygotsky (Zona de Desarrollo Próximo)
+          y el conectivismo de Siemens (2005), la gamificación posiciona al estudiante como
+          protagonista activo: elige rutas de aprendizaje, toma decisiones y construye
+          conocimiento en colaboración con sus pares dentro de la estructura del juego.
+        </p>
+        <span class="card-tag">Vygotsky · Siemens · ZDP</span>
+      </div>
+      <div class="content-card">
+        <div class="card-icon">📱</div>
+        <h3 class="card-title">Mediación Tecnológica</h3>
+        <p class="card-text">
+          Muñoz Rojas (2016) enfatiza que las TIC no son solo herramientas sino mediaciones
+          que transforman la naturaleza misma de la práctica pedagógica. En la gamificación
+          digital, la tecnología no facilita el juego: define sus reglas, su espacio y su
+          retroalimentación, convirtiéndose en infraestructura del aprendizaje.
+        </p>
+        <span class="card-tag">Muñoz Rojas, 2016 · TIC</span>
+      </div>
+    </div>
+
+    <div class="highlight-box fade-in">
+      <p class="highlight-text">
+        "El aula gamificada no reemplaza al docente: lo transforma en diseñador de experiencias,
+        guía de aventuras y facilitador del juego del conocimiento."
+      </p>
+      <p class="highlight-author">— Adaptado de Prensky (2001) y Lee & Hammer (2011)</p>
+    </div>
+
+    <!-- Marco Teórico Completo -->
+    <h3 style="font-family:'Playfair Display',serif;font-size:1.8rem;font-weight:700;margin:2rem 0 1.5rem;color:var(--ink);">
+      Marco Teórico Integrado
+    </h3>
+
+    <div class="theory-grid fade-in">
+      <div class="theory-card orange">
+        <div class="theory-num">TEORÍA 01</div>
+        <h3 class="theory-title">Conectivismo (Siemens, 2005)</h3>
+        <p class="theory-body">
+          El conocimiento reside en redes de conexiones, no en mentes individuales.
+          La gamificación en red (juegos colaborativos online, foros de estrategia)
+          materializa el conectivismo al crear nodos de conocimiento compartido
+          que crecen con cada interacción.
+        </p>
+      </div>
+      <div class="theory-card blue">
+        <div class="theory-num">TEORÍA 02</div>
+        <h3 class="theory-title">Flow Theory (Csikszentmihalyi, 1990)</h3>
+        <p class="theory-body">
+          El estado de flujo —absorción total en una actividad— se logra cuando
+          el reto iguala exactamente la habilidad. Los buenos juegos y la buena
+          gamificación calibran constantemente la dificultad para mantener al
+          estudiante en la zona de flujo, maximizando el aprendizaje.
+        </p>
+      </div>
+      <div class="theory-card gold">
+        <div class="theory-num">TEORÍA 03</div>
+        <h3 class="theory-title">Aprendizaje Multimodal (Gardner, 1983)</h3>
+        <p class="theory-body">
+          Las inteligencias múltiples de Gardner justifican la gamificación al
+          ofrecer múltiples rutas de acceso al conocimiento: visual (interfaz),
+          kinestésica (interacción), interpersonal (colaboración) y lógica
+          (estrategia), atendiendo la diversidad del aula.
+        </p>
+      </div>
+      <div class="theory-card green">
+        <div class="theory-num">TEORÍA 04</div>
+        <h3 class="theory-title">Aprendizaje Situado (Lave & Wenger, 1991)</h3>
+        <p class="theory-body">
+          El aprendizaje es más efectivo cuando ocurre en contextos auténticos.
+          Las simulaciones y juegos serios crean contextos "auténticamente ficticios"
+          que preservan la estructura del problema real mientras eliminan el riesgo,
+          facilitando la transferencia del aprendizaje.
+        </p>
+      </div>
+    </div>
+
+    <div class="research-strip fade-in">
+      <div class="research-strip-text">
+        Según Seaborn & Fels (2015), en su metaanálisis de <strong>59 estudios</strong>,
+        la gamificación mejora significativamente el compromiso (<em>engagement</em>)
+        cuando se alinea con los objetivos de aprendizaje y las características del aprendiz.
+      </div>
+      <div class="research-strip-stat">
+        <div class="research-stat-num">59</div>
+        <div class="research-stat-label">Estudios analizados</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════
+     DÍA 5: VIERNES
+════════════════════════════════════════ -->
+<div class="article-section" id="day-viernes">
+  <div class="article-hero">
+    <div class="article-hero-inner">
+      <div>
+        <div class="article-day-num">DÍA 05 · VIERNES</div>
+        <h2 class="article-title"><em>Reflexión</em><br>Crítica &amp;<br>Conclusiones</h2>
+        <p class="article-intro">
+          La gamificación no es solución mágica ni panacea pedagógica.
+          Su implementación responsable exige rigor, evidencia y coherencia con los
+          fines formativos de la educación superior.
+        </p>
+      </div>
+      <div class="article-icon-block">
+        <div class="big-icon">💎</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="article-content">
+    <div class="content-grid fade-in">
+      <div class="content-card">
+        <div class="card-icon">⚠️</div>
+        <h3 class="card-title">Críticas y Limitaciones</h3>
+        <p class="card-text">
+          Bogost (2011) acuñó el término <em>exploitationware</em> para criticar
+          gamificaciones superficiales que solo manipulan comportamientos mediante
+          recompensas externas, sin generar aprendizaje real. Kapp (2012) advierte
+          que añadir puntos e insignias a contenido aburrido solo lo convierte en
+          contenido aburrido con puntos. La gamificación sin diseño instruccional
+          sólido puede trivializar el aprendizaje.
+        </p>
+        <span class="card-tag">Bogost 2011 · Crítica</span>
+      </div>
+      <div class="content-card">
+        <div class="card-icon">✅</div>
+        <h3 class="card-title">Condiciones para el Éxito</h3>
+        <p class="card-text">
+          Dicheva et al. (2015) identificaron las condiciones del éxito: alineación
+          con objetivos de aprendizaje, atención a la diversidad de perfiles del
+          estudiante (no todos responden igual a la competencia), diseño incremental
+          de la dificultad, retroalimentación formativa dentro del juego y evaluación
+          del impacto en el aprendizaje, no solo en la participación.
+        </p>
+        <span class="card-tag">Dicheva et al., 2015</span>
+      </div>
+    </div>
+
+    <div class="highlight-box fade-in">
+      <p class="highlight-text">
+        "La gamificación no sustituye la pedagogía: la transforma, la dinamiza
+        y la fortalece cuando se diseña con intencionalidad formativa clara."
+      </p>
+      <p class="highlight-author">— Síntesis del equipo investigador, 2026</p>
+    </div>
+
+    <!-- Implementación -->
+    <h3 style="font-family:'Playfair Display',serif;font-size:1.8rem;font-weight:700;margin:2rem 0 1.5rem;color:var(--ink);">
+      Ruta de Implementación en Educación Superior
+    </h3>
+
+    <div class="timeline fade-in">
+      <div class="timeline-item">
+        <div class="timeline-dot">1</div>
+        <div class="timeline-body">
+          <div class="timeline-year">FASE DE DIAGNÓSTICO</div>
+          <div class="timeline-title">Conocer al Aprendiz Digital</div>
+          <p class="timeline-text">Identificar el perfil motivacional de los estudiantes, sus competencias
+          tecnológicas y sus objetivos de aprendizaje antes de diseñar cualquier estrategia gamificada.
+          No todos los estudiantes responden igual a los mismos elementos del juego.</p>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot">2</div>
+        <div class="timeline-body">
+          <div class="timeline-year">FASE DE DISEÑO</div>
+          <div class="timeline-title">Alinear Juego con Objetivos Formativos</div>
+          <p class="timeline-text">Cada mecánica de juego debe responder a un objetivo de aprendizaje específico.
+          Los puntos de experiencia, las misiones y las narrativas deben ser vehículos de competencias,
+          no decoración pedagógica.</p>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot">3</div>
+        <div class="timeline-body">
+          <div class="timeline-year">FASE DE IMPLEMENTACIÓN</div>
+          <div class="timeline-title">Pilotear, Observar y Ajustar</div>
+          <p class="timeline-text">Comenzar con una implementación parcial, recoger datos sobre participación
+          y aprendizaje, y ajustar iterativamente. La gamificación es un diseño vivo que debe evolucionar
+          con el grupo.</p>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot">4</div>
+        <div class="timeline-body">
+          <div class="timeline-year">FASE DE EVALUACIÓN</div>
+          <div class="timeline-title">Medir Aprendizaje, no solo Participación</div>
+          <p class="timeline-text">El éxito de la gamificación se mide en términos de logros de aprendizaje,
+          desarrollo de competencias y transferencia del conocimiento, no solo en tasas de participación
+          o satisfacción del estudiante.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Conclusiones finales -->
+    <div class="content-grid three-col fade-in">
+      <div class="content-card">
+        <div class="card-icon">🎯</div>
+        <h3 class="card-title">Conclusión 1: Pertinencia</h3>
+        <p class="card-text">
+          La gamificación responde pertinentemente a los retos de la educación contemporánea:
+          estudiantes digitales, ambientes híbridos y necesidad de metodologías activas que
+          superen la instrucción transmisiva. Su base teórica en conectivismo, constructivismo
+          y teoría de la autodeterminación la legitima como estrategia pedagógica rigurosa.
+        </p>
+      </div>
+      <div class="content-card">
+        <div class="card-icon">⚖️</div>
+        <h3 class="card-title">Conclusión 2: Responsabilidad</h3>
+        <p class="card-text">
+          Su implementación requiere responsabilidad pedagógica: no basta con agregar puntos
+          e insignias. El docente debe formarse en diseño instruccional gamificado, comprender
+          las teorías que la sustentan y evaluar críticamente su impacto en el aprendizaje
+          real de sus estudiantes.
+        </p>
+      </div>
+      <div class="content-card">
+        <div class="card-icon">🚀</div>
+        <h3 class="card-title">Conclusión 3: Transformación</h3>
+        <p class="card-text">
+          La gamificación no es el destino sino el camino hacia una educación más humana,
+          participativa y significativa. Su mayor contribución no son los puntos ni los trofeos,
+          sino la reconstitución del deseo de aprender como motor intrínseco y permanente
+          del ser humano a lo largo de toda la vida.
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════
+     SECCIÓN DE INVESTIGACIÓN ADICIONAL
+════════════════════════════════════════ -->
+<div class="divider"></div>
+<section class="section" id="investigacion" style="background: var(--paper);">
+  <div class="section-inner">
+    <div class="section-label">Investigación Adicional</div>
+    <h2 class="section-title fade-in">Contexto de Investigación<br>Global y Tendencias</h2>
+    <p class="lead-text fade-in">
+      El campo de la gamificación educativa ha crecido exponencialmente en la última década.
+      A continuación, se presentan hallazgos de investigaciones que amplían y contextualizan
+      el debate sobre su eficacia y sus desafíos.
+    </p>
+
+    <div class="content-grid" style="margin-top:3rem;">
+      <div class="content-card fade-in">
+        <div class="card-icon">📈</div>
+        <h3 class="card-title">Metaanálisis de Evidencia Empírica</h3>
+        <p class="card-text">
+          Hamari, Koivisto & Sarsa (2014) analizaron 24 estudios empíricos sobre gamificación.
+          Los resultados muestran que mientras la mayoría reporta efectos positivos, la eficacia
+          depende significativamente del contexto y las cualidades del usuario. El compromiso
+          y la diversión son los beneficios más reportados, seguidos de la motivación a largo plazo.
+        </p>
+        <span class="card-tag">Hamari et al., 2014 · Evidencia empírica</span>
+      </div>
+      <div class="content-card fade-in">
+        <div class="card-icon">🏫</div>
+        <h3 class="card-title">Gamificación en América Latina</h3>
+        <p class="card-text">
+          Estudios de Contreras & Eguia (2016) en el contexto latinoamericano evidencian
+          que la gamificación debe adaptarse a las condiciones socioeconómicas locales.
+          En Colombia, el acceso desigual a tecnología constituye una barrera real que
+          obliga a diseñar estrategias gamificadas con y sin soporte digital, garantizando
+          equidad educativa.
+        </p>
+        <span class="card-tag">América Latina · Equidad · Contexto</span>
+      </div>
+    </div>
+
+    <div class="content-grid three-col" style="margin-top:1.5rem;">
+      <div class="content-card fade-in">
+        <div class="card-icon">🤖</div>
+        <h3 class="card-title">IA y Gamificación Adaptativa</h3>
+        <p class="card-text">
+          La integración de Inteligencia Artificial en plataformas gamificadas permite
+          personalizar la dificultad, el ritmo y las mecánicas en tiempo real según
+          el perfil de cada estudiante. Sistemas como Knewton y Smart Sparrow
+          representan esta frontera del aprendizaje adaptativo gamificado.
+        </p>
+        <span class="card-tag">IA · Personalización · Futuro</span>
+      </div>
+      <div class="content-card fade-in">
+        <div class="card-icon">🎲</div>
+        <h3 class="card-title">Diseño de Juegos como Aprendizaje</h3>
+        <p class="card-text">
+          Kafai & Burke (2015) proponen que <em>diseñar</em> juegos es más educativo que
+          jugarlos. Cuando los estudiantes programan sus propios juegos (p.ej. con Scratch),
+          desarrollan pensamiento computacional, matemático y narrativo de forma integrada.
+        </p>
+        <span class="card-tag">Kafai & Burke · Scratch · Diseño</span>
+      </div>
+      <div class="content-card fade-in">
+        <div class="card-icon">🧬</div>
+        <h3 class="card-title">Neurociencia del Juego</h3>
+        <p class="card-text">
+          Investigaciones de Howard-Jones (2014) muestran que la incertidumbre del juego
+          activa los circuitos dopaminérgicos con mayor intensidad que las recompensas
+          ciertas. Esta base neurológica explica por qué los juegos mantienen la atención
+          sostenida y la motivación mejor que las recompensas predecibles.
+        </p>
+        <span class="card-tag">Neurociencia · Dopamina · Howard-Jones</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════
+     REFERENCIAS
+════════════════════════════════════════ -->
+<section class="references-section" id="referencias">
+  <div class="references-inner">
+    <h2 class="references-title">Referencias Bibliográficas</h2>
+    <div class="ref-list">
+      <div class="ref-item">
+        <strong>Batlle, J. (2016).</strong> Gamificación para el desarrollo de la comunicación
+        intercultural en el aula de Español como Lengua Extranjera. En R. Roig (Ed.),
+        <em>Tecnología, innovación e investigación en los procesos de enseñanza-aprendizaje</em>
+        (pp. 114–120). Octaedro.
+      </div>
+      <div class="ref-item">
+        <strong>Bogost, I. (2011).</strong> Gamification is bullshit. <em>Ian Bogost — Games by Appointment.</em>
+        Recuperado de http://bogost.com/writing/blog/gamification_is_bullshit/
+      </div>
+      <div class="ref-item">
+        <strong>Boude Figueredo, O., & Ruiz, M. (2009).</strong> TIC y el aprendizaje basado en
+        problemas como agentes significativos en el desarrollo de competencias.
+        <em>Index de Enfermería, 18</em>(1), 18–22.
+      </div>
+      <div class="ref-item">
+        <strong>Csikszentmihalyi, M. (1990).</strong> <em>Flow: The psychology of optimal experience.</em>
+        Harper & Row.
+      </div>
+      <div class="ref-item">
+        <strong>Deci, E. L., & Ryan, R. M. (1985).</strong> <em>Intrinsic motivation and
+        self-determination in human behavior.</em> Plenum Press.
+      </div>
+      <div class="ref-item">
+        <strong>Deterding, S., Dixon, D., Khaled, R., & Nacke, L. (2011).</strong>
+        From game design elements to gamefulness: Defining gamification.
+        <em>Proceedings of the 15th International Academic MindTrek Conference.</em>
+      </div>
+      <div class="ref-item">
+        <strong>Dicheva, D., Dichev, C., Agre, G., & Angelova, G. (2015).</strong>
+        Gamification in education: A systematic mapping study.
+        <em>Educational Technology & Society, 18</em>(3), 75–88.
+      </div>
+      <div class="ref-item">
+        <strong>Hamari, J., Koivisto, J., & Sarsa, H. (2014).</strong>
+        Does gamification work? A literature review of empirical studies on gamification.
+        <em>Proceedings of HICSS'14</em>, IEEE.
+      </div>
+      <div class="ref-item">
+        <strong>Howard-Jones, P. A. (2014).</strong> Neuroscience and education: Myths and messages.
+        <em>Nature Reviews Neuroscience, 15</em>(12), 817–824.
+      </div>
+      <div class="ref-item">
+        <strong>Kapp, K. M. (2012).</strong> <em>The gamification of learning and instruction.</em>
+        Pfeiffer/Wiley.
+      </div>
+      <div class="ref-item">
+        <strong>Marrón, A. M. (2018).</strong> Gamificación en el aula: Gincana de programación.
+        <em>Revista de Investigación en Docencia Universitaria de la Informática,</em> 85–93.
+      </div>
+      <div class="ref-item">
+        <strong>Muñoz Rojas, H. A. (2016).</strong> Mediaciones tecnológicas: Nuevos escenarios
+        de la práctica pedagógica. <em>Praxis & Saber, 7</em>(13), 199–221.
+      </div>
+      <div class="ref-item">
+        <strong>Plass, J. L., Homer, B. D., & Kinzer, C. K. (2015).</strong>
+        Foundations of game-based learning. <em>Educational Psychologist, 50</em>(4), 258–283.
+      </div>
+      <div class="ref-item">
+        <strong>Seaborn, K., & Fels, D. I. (2015).</strong> Gamification in theory and action:
+        A survey. <em>International Journal of Human-Computer Studies, 74,</em> 14–31.
+      </div>
+      <div class="ref-item">
+        <strong>Siemens, G. (2005).</strong> Connectivism: A learning theory for the digital age.
+        <em>International Journal of Instructional Technology and Distance Learning, 2</em>(1), 3–10.
+      </div>
+      <div class="ref-item">
+        <strong>Sobrino Morrás, Á. (2014).</strong> Aportaciones del conectivismo como modelo
+        pedagógico post-constructivista. <em>Propuesta Educativa, 2</em>(42), 39–48.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════
+     AUTORES
+════════════════════════════════════════ -->
+<section class="authors-section" id="autores">
+  <div class="authors-inner">
+    <div class="section-label">Equipo de Investigación</div>
+    <h2 class="section-title fade-in">Autores del Blog</h2>
+    <div class="authors-grid fade-in">
+      <div class="author-card">
+        <div class="author-avatar">SC</div>
+        <div class="author-name">Sugey Patricia Carrascal Carrascal</div>
+        <div class="author-id">ID: 100227874</div>
+      </div>
+      <div class="author-card">
+        <div class="author-avatar">JF</div>
+        <div class="author-name">Juan David Fonseca Puerto</div>
+        <div class="author-id">ID: 100229060</div>
+      </div>
+      <div class="author-card">
+        <div class="author-avatar">JR</div>
+        <div class="author-name">Jesús Alfonso Rojas Cochero</div>
+        <div class="author-id">ID: 100145073</div>
+      </div>
+    </div>
+    <p style="margin-top:2rem;font-size:.85rem;color:var(--muted);text-align:center;">
+      Docente: <strong>Luz Alzate</strong> · Electiva II: Gamificación en la Educación<br>
+      Maestría en Educación · Corporación Universitaria Iberoamericana · Colombia · 2026
+    </p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <strong>Gamificación & Educación</strong> — Blog Académico Actividad II
+  · Corporación Universitaria Iberoamericana · Maestría en Educación · 2026
+</footer>
+
+<script>
+  // ─── TAB SWITCHING ───
+  function showDay(day) {
+    document.querySelectorAll('.article-section').forEach(s => s.classList.remove('active'));
+    document.querySelectorAll('.day-tab').forEach(t => t.classList.remove('active'));
+    document.getElementById('day-' + day).classList.add('active');
+    event.currentTarget.classList.add('active');
+    // Scroll to content
+    document.getElementById('dias').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
+  // ─── FADE-IN ON SCROLL ───
+  const fadeEls = document.querySelectorAll('.fade-in');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+  fadeEls.forEach(el => observer.observe(el));
+
+  // ─── NAV SCROLL EFFECT ───
+  const nav = document.querySelector('nav');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 80) {
+      nav.style.boxShadow = '0 4px 20px rgba(0,0,0,0.08)';
+    } else {
+      nav.style.boxShadow = 'none';
+    }
+  });
+</script>
+</body>
+</html>
